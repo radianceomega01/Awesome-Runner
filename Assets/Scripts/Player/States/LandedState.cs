@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandedState : MonoBehaviour
+public class LandedState : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public LandedState(Player player) : base(player) => OnEnter();
+    public override void OnEnter()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void PhysicsProcess()
     {
-        
+    }
+
+    public override PlayerState Process()
+    {
+        return null;
     }
 }
