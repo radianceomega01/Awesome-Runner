@@ -5,8 +5,13 @@ using UnityEngine;
 public abstract class PlayerState
 {
     protected Player player;
-    public PlayerState(Player player) { this.player = player; }
-
+    PlayerController playerController;
+    public PlayerState(Player player) 
+    { 
+        this.player = player;
+        playerController = new PlayerController();
+        playerController.Player.
+    }
     public abstract void OnEnter();
     public abstract PlayerState Process();
     public abstract void PhysicsProcess();

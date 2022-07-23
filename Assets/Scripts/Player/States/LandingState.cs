@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandedState : PlayerState
+public class LandingState : PlayerState
 {
-    public LandedState(Player player) : base(player) => OnEnter();
+    public LandingState(Player player) : base(player) => OnEnter();
     public override void OnEnter()
     {
     }
