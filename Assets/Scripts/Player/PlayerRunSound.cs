@@ -20,7 +20,6 @@ public class PlayerRunSound : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     public void GenerateFootSound()
     {
         audioSource.volume = audioFootVolume;

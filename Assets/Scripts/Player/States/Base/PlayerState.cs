@@ -5,12 +5,11 @@ using UnityEngine;
 public abstract class PlayerState
 {
     protected Player player;
-    PlayerController playerController;
+    protected static int jumpCount;
+
     public PlayerState(Player player) 
     { 
         this.player = player;
-        playerController = new PlayerController();
-        playerController.Player.
     }
     public abstract void OnEnter();
     public abstract PlayerState Process();

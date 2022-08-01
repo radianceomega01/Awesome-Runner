@@ -2472,10 +2472,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4325225087059425448, guid: ac0d7518dcdd4bf448b775fcf8085a3d, type: 3}
-      propertyPath: layerGround.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
     - target: {fileID: 4325225087059456126, guid: ac0d7518dcdd4bf448b775fcf8085a3d, type: 3}
       propertyPath: m_Name
       value: Player
