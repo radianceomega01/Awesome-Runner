@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private float constY = 1f;
     [SerializeField]
-    private float lerpTime = 0.05f;
+    private float lerpTime = 0.01f;
 
     // Start is called before the first frame update
     void Awake()
