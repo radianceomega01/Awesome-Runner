@@ -7,21 +7,18 @@ using UnityEngine.InputSystem;
 
 public class LandedState : PlayerState
 {
-    int waitBeforeRunning = 500;
+    int waitBeforeRunning = 100;
     bool canStartRunning;
     public LandedState(Player player) : base(player) => OnEnter();
     public async override void OnEnter()
     {
-        player.SetAnimation(Player.AnimationStates.Landed);
         jumpCount = 0;
+        player.SetAnimation(Player.AnimationStates.Landed);
         await Task.Delay(waitBeforeRunning);
         canStartRunning = true;
     }
 
-    public override void PhysicsProcess()
-    {
-
-    }
+    public override void PhysicsProcess() { }
 
     public override PlayerState Process()
     {

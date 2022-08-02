@@ -11,6 +11,7 @@ public class JumpedState : PlayerState
     public JumpedState(Player player) : base(player) => OnEnter();
     public override void OnEnter()
     {
+        Debug.Log(jumpCount);
         if (jumpCount<=1)
         {
             jumpCount++;
@@ -33,13 +34,32 @@ public class JumpedState : PlayerState
     }
     public override void PhysicsProcess()
     {
-        colliders = Physics.OverlapSphere(player.GetFootTransform().position, 1f, player.GetGroundLayer());
+        colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
     }
 
     public override PlayerState Process()
     {
-        if (colliders != null)
-            return new LandedState(player);
+        if (player.GetRigidBody().velocity.y < 0f)
+            return new FallingState(player);
+        else if (colliders != null)
+        {
+            if (player.GetRigidBody().velocity.y == 0f && colliders.Length > 0)
+                return new LandedState(player);
+            else
+                return this;
+        } 
+        /*if (colliders != null)
+        {
+            if (colliders.Length == 0 *//*&& player.GetRigidBody().velocity.y < 0f*//*)
+            {
+                Debug.Log(player.GetRigidBody().velocity.y);
+                //return new FallingState(player);
+            }
+            *//*else if (colliders.Length > 0 && player.GetRigidBody().velocity.y == 0f)
+                return new LandedState(player);*//*
+            else
+                return this;
+        }*/
         else
             return this;
     }

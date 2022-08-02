@@ -50,6 +50,11 @@ public class Player : MonoBehaviour
         if(currentState != null)
             currentState = currentState.Process();
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(footPosition.position, 0.1f);
+    }
     public void SetState(PlayerState state) => currentState = state;
     public void SetAnimation(AnimationStates aniamtionState)
     {

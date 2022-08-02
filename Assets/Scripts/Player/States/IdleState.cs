@@ -15,9 +15,7 @@ public class IdleState : PlayerState
         canStart = true;
     }
 
-    public override void PhysicsProcess()
-    {
-    }
+    public override void PhysicsProcess() { }
 
     public override PlayerState Process()
     {
