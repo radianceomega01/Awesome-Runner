@@ -13,12 +13,10 @@ public class IdleState : PlayerState
         canStart = true;
     }
 
-    public override PlayerState PhysicsProcess() 
+    public override void PhysicsProcess() 
     {
         if (canStart)
-            return StateFactory.GetRunningState(player);
-        else
-            return StateFactory.GetIdleState(player);
+            player.SetState(StateFactory.GetRunningState(player));
     }
 
     public override void Process() { }

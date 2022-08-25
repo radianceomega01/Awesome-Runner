@@ -40,7 +40,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ca9e733e-998c-4ba6-9dcc-5b7d01495cfb"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",

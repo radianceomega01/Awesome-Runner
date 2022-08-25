@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 
     Animator animator;
     PlayerState currentState;
-    PlayerState nextState;
     Rigidbody rigidBody;
     PlayerController playerController;
     public enum AnimationStates
@@ -45,12 +44,7 @@ public class Player : MonoBehaviour
     {
         if (currentState == null)
             return;
-        nextState = currentState.PhysicsProcess();
-        if (nextState.GetType() != currentState.GetType())
-        {
-            nextState.OnEnter();
-        }
-        currentState = nextState;
+        currentState.PhysicsProcess();
 
     }
     void Update()
@@ -63,7 +57,11 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawSphere(footPosition.position, 0.1f);
     }
-    public void SetState(PlayerState state) => currentState = state;
+    public void SetState(PlayerState state)
+    {
+        currentState = state;
+        currentState.OnEnter();
+    } 
     public void SetAnimation(AnimationStates aniamtionState)
     {
         animator.SetTrigger(aniamtionState.ToString());

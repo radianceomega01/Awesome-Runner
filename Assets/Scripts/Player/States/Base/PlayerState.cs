@@ -9,6 +9,6 @@ public abstract class PlayerState
     }
     public abstract void OnEnter();
     public abstract void Process();
-    public abstract PlayerState PhysicsProcess();
+    public abstract void PhysicsProcess();
 
 }
