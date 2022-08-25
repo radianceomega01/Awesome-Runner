@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     Animator animator;
     PlayerState currentState;
+    PlayerState nextState;
     Rigidbody rigidBody;
     PlayerController playerController;
     public enum AnimationStates
@@ -37,12 +38,20 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentState = StateFactory.GetIdleState(this);
+        currentState.OnEnter();
     }
 
     private void FixedUpdate()
     {
-        if (currentState != null)
-            currentState = currentState.PhysicsProcess();
+        if (currentState == null)
+            return;
+        nextState = currentState.PhysicsProcess();
+        if (nextState.GetType() != currentState.GetType())
+        {
+            nextState.OnEnter();
+        }
+        currentState = nextState;
+
     }
     void Update()
     {

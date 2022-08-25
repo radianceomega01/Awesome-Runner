@@ -9,9 +9,10 @@ public class JumpedState : PlayerState
     public static int jumpCount;
     Collider[] colliders;
 
-    public JumpedState(Player player) : base(player) => OnEnter();
+    public JumpedState(Player player) : base(player) { }
     public override void OnEnter()
     {
+        Debug.Log(GetType().Name);
         if (jumpCount<=1)
         {
             jumpCount++;
@@ -35,7 +36,6 @@ public class JumpedState : PlayerState
     public override PlayerState PhysicsProcess()
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
-        Debug.Log("Jumped State");
         if (player.GetRigidBody().velocity.y < 0f)
             return StateFactory.GetFallingState(player);
         else if (colliders != null)

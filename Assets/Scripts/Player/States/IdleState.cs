@@ -5,7 +5,7 @@ public class IdleState : PlayerState
 {
     int waitForStart = 1000;
     bool canStart;
-    public IdleState(Player player):base(player) => OnEnter();
+    public IdleState(Player player) : base(player) { }
 
     public async override void OnEnter()
     {

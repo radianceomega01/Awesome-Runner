@@ -5,9 +5,10 @@ using UnityEngine;
 public class FallingState : PlayerState
 {
     Collider[] colliders;
-    public FallingState(Player player) : base(player) => OnEnter();
+    public FallingState(Player player) : base(player) { }
     public override void OnEnter()
-     {
+    {
+         Debug.Log(GetType().Name);
          player.SetAnimation(Player.AnimationStates.Falling);
          player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
     }
