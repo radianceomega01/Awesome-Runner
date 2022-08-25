@@ -8,20 +8,19 @@ public class FallingState : PlayerState
     public FallingState(Player player) : base(player) => OnEnter();
     public override void OnEnter()
      {
+         player.SetAnimation(Player.AnimationStates.Falling);
          player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
-        player.SetAnimation(Player.AnimationStates.Falling);
     }
 
-    public override void PhysicsProcess() 
+    public override PlayerState PhysicsProcess() 
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
+        //if (player.GetRigidBody().velocity.y == 0)
+        if (colliders.Length > 0)
+                return StateFactory.GetRunningState(player);
+        else
+            return StateFactory.GetFallingState(player);
     }
 
-    public override PlayerState Process()
-    {
-        if (player.GetRigidBody().velocity.y == 0)
-             return new LandedState(player);
-        else
-            return this;
-    }
+    public override void Process() { }
 }

@@ -134,6 +134,7 @@ public class GameplayController : MonoBehaviour
         GameManager.instance.health = health;
         GameManager.instance.level = level;
         yield return new WaitForSecondsRealtime(1f);
+        StateFactory.ClearStates();
        SceneManager.LoadScene(scene);
     }
 

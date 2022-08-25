@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class IdleState : PlayerState
 {
@@ -15,13 +13,13 @@ public class IdleState : PlayerState
         canStart = true;
     }
 
-    public override void PhysicsProcess() { }
-
-    public override PlayerState Process()
+    public override PlayerState PhysicsProcess() 
     {
         if (canStart)
-            return new RunningState(player);
+            return StateFactory.GetRunningState(player);
         else
-            return this;
+            return StateFactory.GetIdleState(player);
     }
+
+    public override void Process() { }
 }

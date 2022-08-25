@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
         Idle,
         Running,
         Jumped,
-        Falling,
-        Landed
+        Falling
     }
     private void Awake()
     {
@@ -35,20 +34,20 @@ public class Player : MonoBehaviour
     {
         playerController.Disable();
     }
-    async void Start()
+    private void Start()
     {
-        currentState = new IdleState(this);
+        currentState = StateFactory.GetIdleState(this);
     }
 
     private void FixedUpdate()
     {
         if (currentState != null)
-            currentState.PhysicsProcess();
+            currentState = currentState.PhysicsProcess();
     }
     void Update()
     {
         if(currentState != null)
-            currentState = currentState.Process();
+            currentState.Process();
     }
 
     private void OnDrawGizmos()

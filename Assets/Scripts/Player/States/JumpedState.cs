@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class JumpedState : PlayerState
 {
-    float jumpPower = 300f;
-    float doubleJumpPower = 200f;
+    float jumpPower = 400f;
+    float doubleJumpPower = 300f;
+    public static int jumpCount;
     Collider[] colliders;
 
     public JumpedState(Player player) : base(player) => OnEnter();
     public override void OnEnter()
     {
-        Debug.Log(jumpCount);
         if (jumpCount<=1)
         {
             jumpCount++;
-            player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
+            player.GetPlayerController().Player.Jump.performed += _ => player.SetState(StateFactory.GetJumpedState(player));
             JumpingBehaviour();
         }
     }
@@ -32,22 +32,25 @@ public class JumpedState : PlayerState
         }
         player.SetAnimation(Player.AnimationStates.Jumped);
     }
-    public override void PhysicsProcess()
+    public override PlayerState PhysicsProcess()
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
-    }
-
-    public override PlayerState Process()
-    {
+        Debug.Log("Jumped State");
         if (player.GetRigidBody().velocity.y < 0f)
-            return new FallingState(player);
+            return StateFactory.GetFallingState(player);
         else if (colliders != null)
         {
             if (player.GetRigidBody().velocity.y == 0f && colliders.Length > 0)
-                return new LandedState(player);
+                return StateFactory.GetRunningState(player);
             else
-                return this;
-        } 
+                return StateFactory.GetJumpedState(player);
+        }
+        else
+            return StateFactory.GetJumpedState(player);
+    }
+
+    public override void Process()
+    {
         /*if (colliders != null)
         {
             if (colliders.Length == 0 *//*&& player.GetRigidBody().velocity.y < 0f*//*)
@@ -60,7 +63,5 @@ public class JumpedState : PlayerState
             else
                 return this;
         }*/
-        else
-            return this;
     }
 }
