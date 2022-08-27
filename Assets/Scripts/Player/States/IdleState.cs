@@ -13,6 +13,11 @@ public class IdleState : PlayerState
         canStart = true;
     }
 
+    public override void OnExit()
+    {
+        canStart = false;
+    }
+
     public override void PhysicsProcess() 
     {
         if (canStart)

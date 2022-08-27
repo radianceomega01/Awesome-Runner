@@ -9,8 +9,13 @@ public class RunningState : PlayerState
     public override void OnEnter()
     {
         player.SetAnimation(Player.AnimationStates.Running);
-        player.GetPlayerController().Player.Jump.performed += _ => player.SetState(StateFactory.GetJumpedState(player));
+        //player.GetPlayerController().Player.Jump.performed += _ => player.SetState(StateFactory.GetJumpedState(player));
         JumpedState.jumpCount = 0;
+    }
+
+    public override void OnExit()
+    {
+        //player.GetPlayerController().Player.Jump.performed -= _ => player.SetState(StateFactory.GetJumpedState(player));
     }
 
     public override void PhysicsProcess()
@@ -21,6 +26,6 @@ public class RunningState : PlayerState
             player.SetState(StateFactory.GetFallingState(player));
     }
 
-    public override void Process() { }
+    public override void Process() { if(Input.GetKeyDown(KeyCode.Space) ) player.SetState(StateFactory.GetJumpedState(player)); }
 
 }

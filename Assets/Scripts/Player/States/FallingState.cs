@@ -8,8 +8,13 @@ public class FallingState : PlayerState
     public FallingState(Player player) : base(player) { }
     public override void OnEnter()
     {
-         player.SetAnimation(Player.AnimationStates.Falling);
-         player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
+        player.SetAnimation(Player.AnimationStates.Falling);
+        //player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
+    }
+
+    public override void OnExit()
+    {
+        //player.GetPlayerController().Player.Jump.performed -= _ => player.SetState(new JumpedState(player));
     }
 
     public override void PhysicsProcess() 
@@ -20,5 +25,5 @@ public class FallingState : PlayerState
             player.SetState(StateFactory.GetRunningState(player));
     }
 
-    public override void Process() { }
+    public override void Process() { if (Input.GetKeyDown(KeyCode.Space)) player.SetState(StateFactory.GetJumpedState(player)); }
 }

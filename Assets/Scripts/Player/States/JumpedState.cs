@@ -15,9 +15,13 @@ public class JumpedState : PlayerState
         if (jumpCount<=1)
         {
             jumpCount++;
-            player.GetPlayerController().Player.Jump.performed += _ => player.SetState(StateFactory.GetJumpedState(player));
+            //player.GetPlayerController().Player.Jump.performed += _ => player.SetState(StateFactory.GetJumpedState(player));
             JumpingBehaviour();
         }
+    }
+    public override void OnExit()
+    {
+        //player.GetPlayerController().Player.Jump.performed -= _ => player.SetState(StateFactory.GetJumpedState(player));
     }
 
     void JumpingBehaviour()
@@ -48,6 +52,7 @@ public class JumpedState : PlayerState
 
     public override void Process()
     {
+        if (Input.GetKeyDown(KeyCode.Space)) player.SetState(StateFactory.GetJumpedState(player));
         /*if (colliders != null)
         {
             if (colliders.Length == 0 *//*&& player.GetRigidBody().velocity.y < 0f*//*)
@@ -61,4 +66,5 @@ public class JumpedState : PlayerState
                 return this;
         }*/
     }
+
 }

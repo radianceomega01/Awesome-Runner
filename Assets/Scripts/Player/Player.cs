@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     }
     public void SetState(PlayerState state)
     {
+        currentState.OnExit();
         currentState = state;
         currentState.OnEnter();
     } 
