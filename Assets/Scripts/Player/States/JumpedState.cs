@@ -37,12 +37,12 @@ public class JumpedState : PlayerState
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
         if (player.GetRigidBody().velocity.y < 0f)
+        { 
             player.SetState(StateFactory.GetFallingState(player));
-        else
-        {
-            if (colliders.Length > 0)
-                player.SetState(StateFactory.GetRunningState(player));
+            return;
         }
+        else if (player.GetRigidBody().velocity.y > 0f && colliders.Length >0)
+            player.SetState(StateFactory.GetRunningState(player));
     }
 
     public override void Process()
