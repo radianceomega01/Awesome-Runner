@@ -120,6 +120,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isgameStarted = true;
         anim.RuningAnimation();
-        bgScroller.canScroll = true;
+        bgScroller.CanScroll = true;
     }
 }

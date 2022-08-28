@@ -127,7 +127,7 @@ public class GameplayController : MonoBehaviour
     }
     IEnumerator OnPlayerDied(string scene)
     {
-        bgScroller.canScroll = false;
+        bgScroller.CanScroll = false;
         canCountScore = false;
 
         GameManager.instance.score = score;

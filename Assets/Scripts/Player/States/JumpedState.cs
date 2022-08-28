@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class JumpedState : PlayerState
 {
@@ -19,10 +20,6 @@ public class JumpedState : PlayerState
             JumpingBehaviour();
         }
     }
-    public override void OnExit()
-    {
-        //player.GetPlayerController().Player.Jump.performed -= _ => player.SetState(StateFactory.GetJumpedState(player));
-    }
 
     void JumpingBehaviour()
     {
@@ -38,33 +35,20 @@ public class JumpedState : PlayerState
     }
     public override void PhysicsProcess()
     {
-        //colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
+        colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
         if (player.GetRigidBody().velocity.y < 0f)
             player.SetState(StateFactory.GetFallingState(player));
-        else if (colliders != null)
+        else
         {
-            if (player.GetRigidBody().velocity.y == 0f && colliders.Length > 0)
+            if (colliders.Length > 0)
                 player.SetState(StateFactory.GetRunningState(player));
-            else
-                player.SetState(StateFactory.GetJumpedState(player));
         }
     }
 
     public override void Process()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) player.SetState(StateFactory.GetJumpedState(player));
-        /*if (colliders != null)
-        {
-            if (colliders.Length == 0 *//*&& player.GetRigidBody().velocity.y < 0f*//*)
-            {
-                Debug.Log(player.GetRigidBody().velocity.y);
-                //return new FallingState(player);
-            }
-            *//*else if (colliders.Length > 0 && player.GetRigidBody().velocity.y == 0f)
-                return new LandedState(player);*//*
-            else
-                return this;
-        }*/
+        if (player.GetPlayerController().Player.Jump.triggered)
+            player.SetState(StateFactory.GetJumpedState(player));
     }
 
 }

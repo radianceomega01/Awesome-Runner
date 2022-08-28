@@ -887,6 +887,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6057140222963153312, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bb202cfbcad3467429b718ec31006752, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -1174,6 +1186,10 @@ PrefabInstance:
     - target: {fileID: 100140, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100140, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400140, guid: 4a461e42cd11fe64a0002e294ada8c59, type: 3}
       propertyPath: m_RootOrder

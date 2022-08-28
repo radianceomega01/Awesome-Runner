@@ -13,15 +13,13 @@ public class IdleState : PlayerState
         canStart = true;
     }
 
-    public override void OnExit()
-    {
-        canStart = false;
-    }
-
     public override void PhysicsProcess() 
     {
         if (canStart)
+        { 
             player.SetState(StateFactory.GetRunningState(player));
+            BGScroller.Instance.CanScroll = true;
+        }
     }
 
     public override void Process() { }

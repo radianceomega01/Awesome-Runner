@@ -12,11 +12,6 @@ public class FallingState : PlayerState
         //player.GetPlayerController().Player.Jump.performed += _ => player.SetState(new JumpedState(player));
     }
 
-    public override void OnExit()
-    {
-        //player.GetPlayerController().Player.Jump.performed -= _ => player.SetState(new JumpedState(player));
-    }
-
     public override void PhysicsProcess() 
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
@@ -25,5 +20,9 @@ public class FallingState : PlayerState
             player.SetState(StateFactory.GetRunningState(player));
     }
 
-    public override void Process() { if (Input.GetKeyDown(KeyCode.Space)) player.SetState(StateFactory.GetJumpedState(player)); }
+    public override void Process()
+    {
+        if (player.GetPlayerController().Player.Jump.triggered)
+            player.SetState(StateFactory.GetJumpedState(player));
+    }
 }
