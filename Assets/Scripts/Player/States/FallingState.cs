@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class FallingState : PlayerState
@@ -15,7 +14,6 @@ public class FallingState : PlayerState
     public override void PhysicsProcess() 
     {
         colliders = Physics.OverlapSphere(player.GetFootTransform().position, 0.1f, player.GetGroundLayer());
-        //if (player.GetRigidBody().velocity.y == 0)
         if (colliders.Length > 0)
             player.SetState(StateFactory.GetRunningState(player));
     }
