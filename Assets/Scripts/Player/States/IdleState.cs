@@ -1,6 +1,5 @@
 
-using System.Threading.Tasks;
-
+using Cysharp.Threading.Tasks;
 public class IdleState : PlayerState
 {
     int waitForStart = 1000;
@@ -9,7 +8,7 @@ public class IdleState : PlayerState
 
     public async override void OnEnter()
     {
-        await Task.Delay(waitForStart);
+        await UniTask.Delay(waitForStart);
         canStart = true;
     }
 

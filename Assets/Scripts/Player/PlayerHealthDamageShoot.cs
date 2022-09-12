@@ -16,14 +16,20 @@ public class PlayerHealthDamageShoot : MonoBehaviour
     [SerializeField]
     GameObject deathSkullPrefab;
 
+    [SerializeField]
+    GameObject mobileInputs;
+
     GameplayController gamePlayController;
     Button shootBtn;
     void Awake()
     {
         levelPooling = GameObject.Find(Tags.LEVELGENERATOR_TAG).GetComponent<LevelPooling>();
         gamePlayController = GameObject.Find(Tags.GAMEPLAYCONTROLLER_TAG).GetComponent<GameplayController>();
-        shootBtn = GameObject.Find(Tags.SHOOTBTN_TAG).GetComponent<Button>();
-        shootBtn.onClick.AddListener(() => OnShootBtnTap());
+        if (mobileInputs.activeInHierarchy)
+        {
+            shootBtn = GameObject.Find(Tags.SHOOTBTN_TAG).GetComponent<Button>();
+            shootBtn.onClick.AddListener(() => OnShootBtnTap());
+        }
         //gamePlayController = GameplayController.instance;
         //levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
     }
